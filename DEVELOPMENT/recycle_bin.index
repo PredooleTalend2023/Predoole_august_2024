@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recyclebin:RecycleBin xmlns:recyclebin="http://www.talend.org/recyclebin">
   <deletedItems id="_en9MEDntEe-L17apX-73jA" path="CP/BANKING" type="METADATA_CONNECTIONS"/>
+  <deletedItems id="_OS3O8E_QEe-TA8KMLPXdmw" path="Mrunal" type="METADATA_FILE_DELIMITED"/>
   <deletedItems id="_c-LkEE40Ee-GmIguiYMgIA" path="Melita_API/Melita_APIPortType/Melita_APIOperation" type="PROCESS"/>
   <deletedItems id="_PF3SUEmzEe-9L8dFXtjQEw" path="Melita_TestAPI/Melita_TestAPIPortType/Melita_TestAPIOperation" type="PROCESS"/>
   <deletedItems id="_1NyS4E8JEe-YDL1X7n5Jkw" path="Mrunal" type="PROCESS"/>
