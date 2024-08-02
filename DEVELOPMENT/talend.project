@@ -5,4 +5,7 @@
   </TalendProperties:Project>
   <TalendProperties:User xmi:id="_c9XWgk-6Ee-empn0vK-Pig" login="harsh.p@predoole.com" firstName="Harsh" lastName="Patel" type="DQ" additionnalData="{}"/>
   <TalendProperties:User xmi:id="_wbdt8U-6Ee-TA8KMLPXdmw" login="mrunal.p@talend.com" firstName="Mrunal" lastName="P" type="DQ" additionnalData="{}"/>
+  <TalendProperties:User xmi:id="_6NIWUE_8Ee-_d_EUxXkkYA" login="jay.p@talend.com" firstName="jay" lastName="p " type="DQ" additionnalData="{}"/>
+  <TalendProperties:User xmi:id="_6NIWUU_8Ee-_d_EUxXkkYA" login="melita.f@talend.com" firstName="melita" lastName="f" type="DQ" additionnalData="{}"/>
+  <TalendProperties:User xmi:id="_6NIWUk_8Ee-_d_EUxXkkYA" login="chirag.p@talend.com" firstName="chirag" lastName="p" type="DQ" additionnalData="{}"/>
 </xmi:XMI>
