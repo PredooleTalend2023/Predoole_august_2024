@@ -117,18 +117,95 @@
       <column comment="" key="false" length="-1" name="newColumn9" nullable="true" originalDbColumnName="ASD" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="360" posY="80">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tJavaRow_1"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="import java.io.*;&#10;import java.util.List;&#10;import java.util.Map;&#10;&#10;// Assume that dbfRows is the list of rows read from the DBF file&#10;List&lt;Map&lt;String, Object&gt;&gt; dbfRows = (List&lt;Map&lt;String, Object&gt;&gt;) globalMap.get(&quot;tFileInputDBF_1_MAIN&quot;);&#10;&#10;String csvFile = &quot;output.csv&quot;;&#10;try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {&#10;    // Write CSV header&#10;    writer.write(&quot;CUST_NO,NAME,STREET,CITY,STATE_PROV,ZIP_PST_CD,COUNTRY,PHONE,FRST_CNTCT,ASD&quot;);&#10;    writer.newLine();&#10;&#10;    for (Map&lt;String, Object&gt; row : dbfRows) {&#10;        writer.write(&#10;            row.get(&quot;CUST_NO&quot;) + &quot;,&quot; +&#10;            row.get(&quot;NAME&quot;) + &quot;,&quot; +&#10;            row.get(&quot;STREET&quot;) + &quot;,&quot; +&#10;            row.get(&quot;CITY&quot;) + &quot;,&quot; +&#10;            row.get(&quot;STATE_PROV&quot;) + &quot;,&quot; +&#10;            row.get(&quot;ZIP_PST_CD&quot;) + &quot;,&quot; +&#10;            row.get(&quot;COUNTRY&quot;) + &quot;,&quot; +&#10;            row.get(&quot;PHONE&quot;) + &quot;,&quot; +&#10;            row.get(&quot;FRST_CNTCT&quot;) + &quot;,&quot; +&#10;            row.get(&quot;ASD&quot;)&#10;        );&#10;        writer.newLine();&#10;    }&#10;} catch (IOException e) {&#10;    e.printStackTrace();&#10;}&#10;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_1">
+      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalDbColumnName="CUST_NO&#9;" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn1" nullable="true" originalDbColumnName="NAME" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn3" nullable="true" originalDbColumnName="STREET" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn2" nullable="true" originalDbColumnName="CITY" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn4" nullable="true" originalDbColumnName="STATE_PROV" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn5" nullable="true" originalDbColumnName="ZIP_PST_CD" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn6" nullable="true" originalDbColumnName="COUNTRY&#9;" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn7" nullable="true" originalDbColumnName="PHONE" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn8" nullable="true" originalDbColumnName="FRST_CNTCT" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn9" nullable="true" originalDbColumnName="ASD" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="560" posY="80">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tLogRow_1"/>
+    <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
+    <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
+    <elementParameter field="RADIO" name="VERTICAL" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE" show="false" value="true"/>
+    <elementParameter field="RADIO" name="PRINT_LABEL" show="false" value="false"/>
+    <elementParameter field="RADIO" name="PRINT_UNIQUE_LABEL" show="false" value="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" show="false" value="&quot;|&quot;"/>
+    <elementParameter field="CHECK" name="PRINT_HEADER" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_UNIQUE_NAME" show="false" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_COLNAMES" show="false" value="false"/>
+    <elementParameter field="CHECK" name="USE_FIXED_LENGTH" show="false" value="false"/>
+    <elementParameter field="TABLE" name="LENGTHS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn1"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn3"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn2"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn4"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn5"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn6"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn7"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn8"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="newColumn9"/>
+      <elementValue elementRef="LENGTH" value="10"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PRINT_CONTENT_WITH_LOG4J" value="true"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" show="false" value="100"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tLogRow_1">
+      <column comment="" key="false" length="-1" name="newColumn" nullable="true" originalDbColumnName="CUST_NO&#9;" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn1" nullable="true" originalDbColumnName="NAME" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn3" nullable="true" originalDbColumnName="STREET" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn2" nullable="true" originalDbColumnName="CITY" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn4" nullable="true" originalDbColumnName="STATE_PROV" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn5" nullable="true" originalDbColumnName="ZIP_PST_CD" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn6" nullable="true" originalDbColumnName="COUNTRY&#9;" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn7" nullable="true" originalDbColumnName="PHONE" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn8" nullable="true" originalDbColumnName="FRST_CNTCT" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="newColumn9" nullable="true" originalDbColumnName="ASD" originalLength="-1" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tDBFInput_1" offsetLabelX="0" offsetLabelY="0" source="tDBFInput_1" target="tJavaRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row1"/>
+  </connection>
+  <connection connectorName="FLOW" label="row2" lineStyle="0" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tLogRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="row2"/>
+  </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" show="false" value="tDBFInput_1"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" show="false" value="0;0;0"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="247;247;247"/>
   </subjob>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_a66fb3e0-179d-415f-bec6-51b49f909dda"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>NESJq/I1WrL+HHX4Kr4fhaC3J/w+YzoVQRD7geClzqddef3TTDP18WqjZpXr5nGSB3Rde9Bi1aGT&#13;
-1UvGmjPNHQ==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_788dc9b3-6e4f-4eaa-b63b-47aa32e04a27"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>VNL+hSCDnPWhOgfc6ZTbo396fM5nc1fCTRb4rckdOuNljm63lZEdJ1M60pS4kBWy4zHnRnimVSFH&#13;
-ZyAwtrsgUg==</DigestValue></Reference></SignedInfo><SignatureValue>BQf2+U6w6ovUaW9c93sfL3Qzr8Ta4Rx206/dLW9YM+x13HPJRDe4SsaN7ZNkUF6ISMVVUjrLhTQZ&#13;
-UmIrbWn46WnENxKk0OyB7fExXKP4oDD0UsxCKkvBKqnFnuEewId9eyA2Oqvhb9xQx0G0bIanCgob&#13;
-Jn5AovWhrC71O7Tg1fY3jIMi9eIa6RNxaaqRzO4JNG3zhjbgXPptDQqxdNhA0G4TTGXoSwfr8iaF&#13;
-26aD24nGq54uH+EwDMLXAYNO2qnquIYMxKNMPNXx1T/MG9/dAXLrUNYSEvBQOJeGvVUrnAvwg0Cx&#13;
-CILYwTLAtIQ5XXj2Y4EjyyNgdzfGEn5i0ife/g==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="_fa24c90e-a012-4d97-96c1-fa27643f16de"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>fNQT2fnz0cHDELm9F1VjW3D6lBO0Y51Nhl5y08vAqKdr4pSF8PrdM5/tPkTZbjtATnizF4Nno3/k&#13;
+WEJ0EMDL1A==</DigestValue></Reference><Reference Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties" URI="#_7ee8ced3-6b48-4960-8edd-47027de8a3ca"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><DigestValue>7bgOsOp5TQ9OkxUugPK6HIR6rVloYaLMOdwpuzEx8BTuJp1PtOtHS1RjCPlMPJB1Mz+qfgHGQaeQ&#13;
+OGBQ715Zmw==</DigestValue></Reference></SignedInfo><SignatureValue>hN7hPQ2U/CNgK9ICB3/X8u+M5IL5ywdhDIbfeecK6mgfZmfY6SNQr9kmgWsz5IB3izODIbCTg5ex&#13;
+kkyDgvHonFAKQSRStZ/OeDdtuIzpoLPQW1vMU9a8LsUD2GucdLGYohcK8yx0Ydo67CmqBALF+CXJ&#13;
+rFcKDgOCifu7yRQgAMMOTRR+mrioUNsa7v/lHki49hjaSGfh883D9i6IZiihUYmZwWf/F2vIZcNv&#13;
+8kv3y8BuebB+K1WqlkhNxtN8okUW2+C+uRkEh1QtHGvTYlGm7Q4y6kGl5wqFLGLvOm6z76+U2BxW&#13;
+Y3kfFGmD87YclFs2+JqivsthB5A7iYHKHtAMWg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>C=FR,ST=Paris,L=Paris,O=Talend Inc.,OU=R&amp;D,CN=Talend Code Signing certificate</X509SubjectName><X509Certificate>MIIFADCCAuigAwIBAgIIA2OsD6bRyj0wDQYJKoZIhvcNAQELBQAwgY0xCzAJBgNVBAYTAkZSMQ4w&#13;
 DAYDVQQIEwVQYXJpczEOMAwGA1UEBxMFUGFyaXMxFDASBgNVBAoTC1RhbGVuZCBJbmMuMQwwCgYD&#13;
 VQQLDANSJkQxFjAUBgNVBAMMDVRhbGVuZCBSJkQgQ0ExIjAgBgkqhkiG9w0BCQEWE3NlY3VyaXR5&#13;
 QHRhbGVuZC5jb20wHhcNMTkwNjAzMDgxODIwWhcNMjkwNjAzMDAwMDAwWjB7MSgwJgYDVQQDEx9U&#13;
@@ -150,4 +227,4 @@ hakvpzhOyLo91h8YAQrEZJdNuKA8IYmBrFZQZDCz0uywKSyFfzPyJhvxylCLG/iDPPfE0VWcrMJ/&#13
 WQJly/2XPg/NBCTF3pSKS0kCiA7PeaI3cWkMYYA3PMwYDvzqs1opBRglG7ikj0bQxSm3lcjMuuvW&#13;
 gBRksFKjP3K/nztsjSoYITOM9jR29ReIL3v0E8RbAFwA2RGq6Dxd0ixfbucMesy5Gnr8tfYy6rW+&#13;
 qSQqd3ah4+PSzBNVwIB4ytpdrG3SlhCI2i2Th8ek8Sjsaquh9qPAerWNd2+84HWOOGj1Xe1qc6vg&#13;
-qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_788dc9b3-6e4f-4eaa-b63b-47aa32e04a27" Target="#_a66fb3e0-179d-415f-bec6-51b49f909dda"><Timestamp>2024-08-02 04:58:18</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
+qqu6JoK9EXKDiwBqDVkueIa+MhamE1VDnhn2pPui</X509Certificate></X509Data></KeyInfo><Object><SignatureProperties><SignatureProperty Id="_7ee8ced3-6b48-4960-8edd-47027de8a3ca" Target="#_fa24c90e-a012-4d97-96c1-fa27643f16de"><Timestamp>2024-08-02 05:00:37</Timestamp></SignatureProperty></SignatureProperties></Object></Signature></talendfile:ProcessType>
