@@ -1,66 +1,33 @@
-package routines;
-
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import com.linuxense.javadbf.DBFException;
-import com.linuxense.javadbf.DBFReader;
-import com.linuxense.javadbf.DBFRow;
+import java.io.*;
+import com.linuxense.javadbf.*;
 
 public class dbf12 {
+    public static void convertDBFToCSV(String dbfFilePath, String csvFilePath) throws IOException {
+        DBFReader reader = new DBFReader(new FileInputStream("C:/Users/Laptop_User/Downloads/sample.dbf"));
+        PrintWriter writer = new PrintWriter(new FileOutputStream("D:/Glossary"));
 
-    public static void writeDBFToCSV(String dbfFilePath, String csvFilePath) throws DBFException {
-        DBFReader reader = null;
-        BufferedWriter writer = null;
-
-        try {
-            // Initialize DBFReader
-            FileInputStream fis = new FileInputStream(dbfFilePath);
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            reader = new DBFReader(bis);
-
-            // Initialize BufferedWriter
-            writer = new BufferedWriter(new FileWriter(csvFilePath));
-
-            // Write CSV header
-            writer.write("CUST_NO,NAME,STREET,CITY,STATE_PROV,ZIP_PST_CD,COUNTRY,PHONE,FRST_CNTCT,ASD");
-            writer.newLine();
-
-            // Read rows from DBF file and write to CSV
-            DBFRow row;
-            while ((row = reader.nextRow())!= null) {
-                writer.write(
-                    row.getString("CUST_NO") + "," +
-                    row.getString("NAME") + "," +
-                    row.getString("STREET") + "," +
-                    row.getString("CITY") + "," +
-                    row.getString("STATE_PROV") + "," +
-                    row.getString("ZIP_PST_CD") + "," +
-                    row.getString("COUNTRY") + "," +
-                    row.getString("PHONE") + "," +
-                    row.getString("FRST_CNTCT") + "," +
-                    row.getString("ASD")
-                );
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (writer!= null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        // Write CSV header
+        String[] fieldNames = reader.getFieldNames();
+        for (int i = 0; i < fieldNames.length; i++) {
+            writer.print(fieldNames[i]);
+            if (i < fieldNames.length - 1) {
+                writer.print(",");
             }
         }
-    }
+        writer.println();
 
-    public static void main(String[] args) {
-        writeDBFToCSV("C:/Users/Laptop_User/Downloads/sample.dbf", "C:/Users/Laptop_User/Downloads/sample.csv");
+        // Write CSV data
+        while (reader.next()) {
+            for (int i = 0; i < fieldNames.length; i++) {
+                writer.print(reader.getString(fieldNames[i]));
+                if (i < fieldNames.length - 1) {
+                    writer.print(",");
+                }
+            }
+            writer.println();
+        }
+
+        reader.close();
+        writer.close();
     }
 }
