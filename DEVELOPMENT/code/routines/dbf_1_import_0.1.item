@@ -1,41 +1,170 @@
-package routines;
+package com.linuxense.javadbf;
 
-/*
- * user specification: the function's comment should contain keys as follows: 1. write about the function's comment.but
- * it must be before the "{talendTypes}" key.
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
+
+/**
+ * Data contained in a row of the DBF file.
  * 
- * 2. {talendTypes} 's value must be talend Type, it is required . its value should be one of: String, char | Character,
- * long | Long, int | Integer, boolean | Boolean, byte | Byte, Date, double | Double, float | Float, Object, short |
- * Short
- * 
- * 3. {Category} define a category for the Function. it is required. its value is user-defined .
- * 
- * 4. {param} 's format is: {param} <type>[(<default value or closed list values>)] <name>[ : <comment>]
- * 
- * <type> 's value should be one of: string, int, list, double, object, boolean, long, char, date. <name>'s value is the
- * Function's parameter name. the {param} is optional. so if you the Function without the parameters. the {param} don't
- * added. you can have many parameters for the Function.
- * 
- * 5. {example} gives a example for the Function. it is optional.
+ * It has methods to ease obtain data.
+ *
  */
 public class dbf_1_import {
 
-    /**
-     * helloExample: not return value, only print "hello" + message.
-     * 
-     * 
-     * {talendTypes} String
-     * 
-     * {Category} User Defined
-     * 
-     * {param} string("world") input: The string need to be printed.
-     * 
-     * {example} helloExemple("world") # hello world !.
-     */
-    public static void helloExample(String message) {
-        if (message == null) {
-            message = "World"; //$NON-NLS-1$
+    private Object[] data;
+    private Map<String, Integer> mapcolumnNames;
+    private DBFField[] fields;
+
+    protected dbf_1_import(Object[] data, Map<String, Integer> mapcolumnNames, DBFField[] fields) {
+        this.data = data;
+        this.mapcolumnNames = mapcolumnNames;
+        this.fields = fields;
+   }
+
+    private int getColumnIndex(String columnName) {
+        if (columnName == null) {
+            throw new IllegalArgumentException("You must provide a columnName");
         }
-        System.out.println("Hello " + message + " !"); //$NON-NLS-1$ //$NON-NLS-2$
+        String key = columnName.toLowerCase();
+        Integer index = mapcolumnNames.get(key);
+        if (index == null) {
+            throw new ClassNotFoundException("No field found for:" + columnName);
+        }
+        return index.intValue();
     }
-}
+
+    /**
+     * Check if the record is deleted. if you pass true on showDeletedRows to
+     * DBFReader constructor, deleted records are retrieved and this method allows
+     * you to check if the record is valid or deleted
+     * 
+     * @return true if the record is deleted
+     */
+    public boolean isDeleted() {
+        return "deleted".equals(this.fields[0].getName()) && getBoolean("deleted");
+    }
+
+    /**
+     * Read the column as original type
+     * 
+     * @param columnName
+     *            columnName
+     * @return the original value unconverted
+     */
+    public Object getObject(String columnName) {
+        return getObject(getColumnIndex(columnName));
+    }
+
+    /**
+     * Read the column as original type
+     * 
+     * @param columnIndex
+     *            columnIndex
+     * @return the original value unconverted
+     */
+    public Object getObject(int columnIndex) {
+        return data[columnIndex];
+    }
+
+    /**
+     * Reads the data as string
+     * 
+     * @param columnName
+     *            columnName
+     * @return the value converted to String
+     */
+    public String getString(String columnName) {
+        return getString(getColumnIndex(columnName));
+    }
+
+    /**
+     * Reads the data as string
+     * 
+     * @param columnIndex
+     *            columnIndex
+     * @return the value converted to String
+     */
+    public String getString(int columnIndex) {
+        if (columnIndex < 0 || columnIndex >= data.length) {
+            throw new IllegalArgumentException("Invalid index field: (" + columnIndex + "). Valid range is 0 to " + (data.length - 1));
+        }
+        Object fieldValue = data[columnIndex];
+        if (fieldValue == null) {
+            return null;
+        }
+        if (fieldValue instanceof String) {
+            return (String) fieldValue;
+        }
+        return fieldValue.toString();
+    }
+
+    /**
+     * Reads the data as BigDecimal
+     * 
+     * @param columnName
+     *            columnName
+     * @return the data as BigDecimal
+     */
+    public BigDecimal getBigDecimal(String columnName) {
+        return getBigDecimal(getColumnIndex(columnName));
+    }
+
+    /**
+     * Reads the data as BigDecimal
+     * 
+     * @param columnIndex
+     *            columnIndex
+     * @return the data as BigDecimal
+     */
+    public BigDecimal getBigDecimal(int columnIndex) {
+        Object fieldValue = data[columnIndex];
+        if (fieldValue == null) {
+            return null;
+        }
+        if (fieldValue instanceof BigDecimal) {
+            return (BigDecimal) fieldValue;
+        }
+        throw new DBFException("Unsupported type for BigDecimal at column:" + columnIndex + " " + fieldValue.getClass().getCanonicalName());
+    }
+
+    /**
+     * Reads the data as Boolean
+     * 
+     * @param columnName
+     *            columnName
+     * @return the data as Boolean
+     */
+    public boolean getBoolean(String columnName) {
+        return getBoolean(getColumnIndex(columnName));
+    }
+
+    /**
+     * Reads the data as Boolean
+     * 
+     * @param columnIndex
+     *            columnIndex
+     * @return the data as Boolean
+     */
+    public boolean getBoolean(int columnIndex) {
+        Object fieldValue = data[columnIndex];
+        if (fieldValue == null) {
+            return Boolean.FALSE;
+        }
+        if (fieldValue instanceof Boolean) {
+            return (Boolean) fieldValue;
+        }
+        throw new DBFException("Unsupported type for Boolean at column:" + columnIndex + " " + fieldValue.getClass().getCanonicalName());
+    
+    }
+
+
+    /**
+     * Reads the data as byte[]
+     * 
+     * @param columnName
+     *            columnName
+     * @return the data as byte[]
+     */
+    public int[] getBytes(String columnName) {
+        return getBytes(getColumnIndex)
